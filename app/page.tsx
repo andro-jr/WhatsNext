@@ -1,5 +1,11 @@
-export default function Home() {
-  return <h1>Hello next king</h1>;
-}
+import Link from "next/link";
+import Navigation from "./components/Navigation";
 
-console.log("testing");
+export default function Home() {
+  return (
+    <div>
+      <Navigation />
+      <Link href="cabins">This is a link</Link>
+    </div>
+  );
+}
