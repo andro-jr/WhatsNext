@@ -44,7 +44,7 @@ export default function Page() {
         <Image
           src="/about-2.jpg"
           fill
-          objectFit="cover"
+          className="object-cover"
           alt="Family that manages The Wild Oasis"
         />
       </div>
