@@ -40,7 +40,7 @@ export default function Page() {
         />
       </div>
 
-      <div className="col-span-2 aspect-square">
+      <div className="col-span-2 aspect-square relative">
         <Image
           src="/about-2.jpg"
           fill
