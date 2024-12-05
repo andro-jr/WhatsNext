@@ -24,3 +24,11 @@ export type Country = {
   name: string;
   flag: string;
 };
+
+export type Guest = {
+  fullName: string;
+  email: string;
+  nationalId: string;
+  nationality: string;
+  countryFlag: string;
+};
