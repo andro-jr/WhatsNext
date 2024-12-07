@@ -8,6 +8,14 @@ interface PageParamType {
   };
 }
 
+export const generateMetadata = async ({ params }: PageParamType) => {
+  const { name } = await getCabin(params.cabinId);
+
+  return {
+    title: `Cabin ${name}`,
+  };
+};
+
 export default async function Page({ params }: PageParamType) {
   const { cabinId } = params;
   const { name, maxCapacity, image, description } = await getCabin(cabinId);
