@@ -5,7 +5,7 @@ import { Booking, Guest } from "../_types";
 /////////////
 // GET
 
-export async function getCabin(id: number) {
+export async function getCabin(id: string) {
   const { data, error } = await supabase
     .from("cabins")
     .select("*")
@@ -22,7 +22,7 @@ export async function getCabin(id: number) {
   return data;
 }
 
-export async function getCabinPrice(id: number) {
+export async function getCabinPrice(id: string) {
   const { data, error } = await supabase
     .from("cabins")
     .select("regularPrice, discount")
