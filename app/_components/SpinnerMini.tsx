@@ -1,5 +1,9 @@
 function SpinnerMini() {
-  return <div className='spinner-mini'></div>;
+  return (
+    <div className="grid items-center justify-center">
+      <div className="spinner-mini"></div>
+    </div>
+  );
 }
 
 export default SpinnerMini;
