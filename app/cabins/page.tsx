@@ -1,10 +1,17 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+interface CabinsPageProps {
+  searchParams: {
+    capacity: string;
+  };
+}
 
-export const revalidate = 3600;
+export default function Page({ searchParams }: CabinsPageProps) {
+  console.log("searchParams :", searchParams);
 
-export default function Page() {
+  const filter = searchParams?.capacity ?? "all";
+  console.log("filter :", filter);
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -20,7 +27,7 @@ export default function Page() {
       </p>
 
       <Suspense fallback={<Spinner />}>
-        <CabinList />
+        <CabinList filter={filter} />
       </Suspense>
     </div>
   );
