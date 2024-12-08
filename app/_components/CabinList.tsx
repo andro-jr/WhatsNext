@@ -1,5 +1,6 @@
 import { getCabins } from "../_lib/data-service";
 import { Cabin } from "../_types";
+import { CabinFilters } from "../_types/enums";
 import CabinCard from "./CabinCard";
 
 interface CabinListProps {
@@ -13,15 +14,15 @@ export default async function CabinList({ filter }: CabinListProps) {
 
   let filteredCabins: Cabin[] = [];
 
-  if (filter === "all") {
+  if (filter === CabinFilters.All) {
     filteredCabins = cabins;
-  } else if (filter === "small") {
+  } else if (filter === CabinFilters.Small) {
     filteredCabins = cabins.filter((cabin) => cabin.maxCapacity <= 3);
-  } else if (filter === "medium") {
+  } else if (filter === CabinFilters.Medium) {
     filteredCabins = cabins.filter(
       (cabin) => cabin.maxCapacity > 3 && cabin.maxCapacity < 8
     );
-  } else if (filter === "large")
+  } else if (filter === CabinFilters.Large)
     filteredCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
 
   return (

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import CabinList from "../_components/CabinList";
 import Spinner from "../_components/Spinner";
+import Filter from "../_components/Filter";
 interface CabinsPageProps {
   searchParams: {
     capacity: string;
@@ -11,7 +12,6 @@ export default function Page({ searchParams }: CabinsPageProps) {
   console.log("searchParams :", searchParams);
 
   const filter = searchParams?.capacity ?? "all";
-  console.log("filter :", filter);
   return (
     <div>
       <h1 className="text-4xl mb-5 text-accent-400 font-medium">
@@ -25,6 +25,10 @@ export default function Page({ searchParams }: CabinsPageProps) {
         home away from home. The perfect spot for a peaceful, calm vacation.
         Welcome to paradise.
       </p>
+
+      <div className="flex justify-end mb-8">
+        <Filter />
+      </div>
 
       <Suspense fallback={<Spinner />}>
         <CabinList filter={filter} />
