@@ -9,7 +9,6 @@ interface CabinsPageProps {
 }
 
 export default function Page({ searchParams }: CabinsPageProps) {
-  console.log("searchParams :", searchParams);
 
   const filter = searchParams?.capacity ?? "all";
   return (
@@ -30,7 +29,7 @@ export default function Page({ searchParams }: CabinsPageProps) {
         <Filter />
       </div>
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
       </Suspense>
     </div>

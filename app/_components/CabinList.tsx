@@ -14,16 +14,17 @@ export default async function CabinList({ filter }: CabinListProps) {
 
   let filteredCabins: Cabin[] = [];
 
-  if (filter === CabinFilters.All) {
-    filteredCabins = cabins;
-  } else if (filter === CabinFilters.Small) {
+  if (filter === CabinFilters.Small) {
     filteredCabins = cabins.filter((cabin) => cabin.maxCapacity <= 3);
   } else if (filter === CabinFilters.Medium) {
     filteredCabins = cabins.filter(
       (cabin) => cabin.maxCapacity > 3 && cabin.maxCapacity < 8
     );
-  } else if (filter === CabinFilters.Large)
+  } else if (filter === CabinFilters.Large) {
     filteredCabins = cabins.filter((cabin) => cabin.maxCapacity >= 8);
+  } else {
+    filteredCabins = cabins;
+  }
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
