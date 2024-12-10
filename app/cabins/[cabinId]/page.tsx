@@ -1,9 +1,10 @@
-import DateSelector from "@/app/_components/DateSelector";
-import ReservationForm from "@/app/_components/ResevationForm";
+import CabinReservation from "@/app/_components/CabinReservation";
+import Spinner from "@/app/_components/Spinner";
 import TextExpander from "@/app/_components/TextExpander";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { Suspense } from "react";
 
 interface PageParamType {
   params: {
@@ -30,7 +31,8 @@ export const generateStaticParams = async () => {
 
 export default async function Page({ params }: PageParamType) {
   const { cabinId } = params;
-  const { name, maxCapacity, image, description } = await getCabin(cabinId);
+  const cabin = await getCabin(cabinId);
+  const { name, maxCapacity, image, description } = cabin;
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
@@ -82,10 +84,9 @@ export default async function Page({ params }: PageParamType) {
         <h2 className="text-5xl font-semibold text-center mb-10 text-accent-400">
           Reserve {name} today. Pay on arrival.
         </h2>
-        <div className="grid grid-cols-2 border border-primary-800 min-h-[400px]">
-          <DateSelector />
-          <ReservationForm />
-        </div>
+        <Suspense key={params.cabinId} fallback={<Spinner />}>
+          <CabinReservation cabin={cabin} />
+        </Suspense>
       </div>
     </div>
   );

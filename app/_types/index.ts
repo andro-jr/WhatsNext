@@ -32,3 +32,12 @@ export type Guest = {
   nationality: string;
   countryFlag: string;
 };
+
+export type Settings = {
+  minBookingLength: number;
+  maxBookingLength: number;
+};
+export type BookingDates = {
+  minBookingLength: number;
+  maxBookingLength: number;
+};
