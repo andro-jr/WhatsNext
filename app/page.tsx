@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import BgImage from "@/public/bg.png";
 
-// TEST: GIT SSH KEY TEST
-
 export default function Page() {
   return (
     <main className="mt-24">
