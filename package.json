@@ -16,6 +16,7 @@
     "next": "14.2.18",
     "prettier": "^3.4.2",
     "react": "^18",
+    "react-day-picker": "8",
     "react-dom": "^18"
   },
   "devDependencies": {
