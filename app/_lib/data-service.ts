@@ -14,7 +14,7 @@ export async function getCabin(id: string) {
     .single();
 
   // For testing
-  await new Promise((res) => setTimeout(res, 3000));
+  // await new Promise((res) => setTimeout(res, 3000));
 
   if (error) {
     console.error(error);
@@ -131,7 +131,7 @@ export async function getBookedDatesByCabinId(cabinId: string) {
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
-  await new Promise((res) => setTimeout(res, 3000));
+  // await new Promise((res) => setTimeout(res, 3000));
 
   if (error) {
     console.error(error);
