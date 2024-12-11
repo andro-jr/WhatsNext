@@ -1,3 +1,6 @@
+"use client";
+
+import { useReservation } from "../_context/ReservationContext";
 import { Cabin } from "../_types";
 
 interface ReservationFormProps {
@@ -7,6 +10,9 @@ interface ReservationFormProps {
 function ReservationForm({ cabin }: ReservationFormProps) {
   // CHANGE
   const { maxCapacity } = cabin;
+
+  const { range } = useReservation();
+  console.log("range :", range);
 
   return (
     <div className="scale-[1.01]">
