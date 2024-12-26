@@ -19,6 +19,7 @@ function ReservationForm({ cabin, user }: ReservationFormProps) {
   const { maxCapacity } = cabin;
 
   const { range } = useReservation();
+  console.log("range :", range);
 
   return (
     <div className="scale-[1.01]">

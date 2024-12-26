@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import Google from "next-auth/providers/google";
 
 const authConfig = {
@@ -8,6 +8,11 @@ const authConfig = {
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
+  callbacks: {
+    authorized({ auth }: { auth: Session | null }) {
+      return !!auth?.user;
+    },
+  },
 };
 
 export const {
