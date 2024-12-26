@@ -6,7 +6,12 @@ import { Cabin } from "../_types";
 
 interface ReservationFormProps {
   cabin: Cabin;
-  user: { image: string; name: string };
+  user: {
+    id?: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  };
 }
 
 function ReservationForm({ cabin, user }: ReservationFormProps) {
@@ -21,16 +26,18 @@ function ReservationForm({ cabin, user }: ReservationFormProps) {
         <p>Logged in as</p>
 
         <div className="flex gap-2 items-center">
-          <p>{user.name}</p>
+          <p>{user?.name}</p>
 
-          <Image
-            referrerPolicy="no-referrer"
-            className="rounded-full"
-            width={26}
-            height={26}
-            src={user.image}
-            alt={user.name}
-          />
+          {user?.image && (
+            <Image
+              referrerPolicy="no-referrer"
+              className="rounded-full"
+              width={26}
+              height={26}
+              src={user.image}
+              alt={user?.name || "User"}
+            />
+          )}
         </div>
       </div>
 
