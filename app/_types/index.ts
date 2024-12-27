@@ -1,3 +1,5 @@
+import { Session } from "next-auth";
+
 export type Cabin = {
   id: string;
   name: string;
@@ -27,11 +29,12 @@ export type Country = {
 };
 
 export type Guest = {
+  guestId?: string;
   fullName: string;
   email: string;
-  nationalId: string;
-  nationality: string;
-  countryFlag: string;
+  nationalId?: string;
+  nationality?: string;
+  countryFlag?: string;
 };
 
 export type Settings = {
@@ -41,4 +44,11 @@ export type Settings = {
 export type BookingDates = {
   minBookingLength: number;
   maxBookingLength: number;
+};
+
+export type ExtendedSession = Session & {
+  user: {
+    email?: string;
+    guestId?: string;
+  };
 };
