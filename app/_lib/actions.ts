@@ -2,6 +2,11 @@
 
 import { signIn, signOut } from "./auth";
 
+export async function updateProfile(formData: FormData) {
+  console.log("formData :", formData);
+  console.log("updating profile");
+}
+
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
 }
