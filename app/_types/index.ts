@@ -18,9 +18,12 @@ export type Booking = {
   numNights: number;
   totalPrice: number;
   numGuests: number;
-  status: string;
+  status?: string;
   created_at: string;
-  cabins: Cabin;
+  cabins: {
+    name: string;
+    image: string;
+  };
 };
 
 export type Country = {

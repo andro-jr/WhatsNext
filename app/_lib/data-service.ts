@@ -79,12 +79,14 @@ export async function getBooking(id: number) {
   return data;
 }
 
-export async function getBookings(guestId: number) {
+export async function getBookings(
+  guestId: string | undefined
+): Promise<Booking[]> {
   const { data, error } = await supabase
     .from("bookings")
     // We actually also need data on the cabins as well. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
     .select(
-      "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)"
+      "id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name,image)"
     )
     .eq("guestId", guestId)
     .order("startDate");
@@ -94,6 +96,7 @@ export async function getBookings(guestId: number) {
     throw new Error("Bookings could not get loaded");
   }
 
+  // @ts-expect-error -> It thinks data has cabins as array but is not
   return data;
 }
 
