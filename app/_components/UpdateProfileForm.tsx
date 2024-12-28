@@ -50,10 +50,10 @@ function UpdateProfileForm({ children, guest }: UpdateProfileFormProps) {
       {children}
 
       <div className="space-y-2">
-        <label htmlFor="nationalID">National ID number</label>
+        <label htmlFor="nationalId">National ID number</label>
         <input
           defaultValue={nationalId}
-          name="nationalID"
+          name="nationalId"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
         />
       </div>
