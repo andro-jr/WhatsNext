@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import supabase from "./supabase";
+import { getBookings } from "./data-service";
 
 export async function updateProfile(formData: FormData) {
   const session = await auth();
@@ -49,6 +50,13 @@ export async function deleteReservation(bookingId: string) {
   const session = await auth();
 
   if (!session) throw new Error("You must be logged in!");
+
+  const guestBookings = await getBookings(session?.user?.id);
+
+  const bookingIds = guestBookings.map((booking) => booking.id);
+
+  if (!bookingIds.includes(bookingId))
+    throw new Error("Booking does not belong to the current guest!@");
 
   const { error } = await supabase
     .from("bookings")
