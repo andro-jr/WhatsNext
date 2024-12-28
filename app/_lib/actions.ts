@@ -1,6 +1,7 @@
 "use server";
 
 import { auth, signIn, signOut } from "./auth";
+import supabase from "./supabase";
 
 export async function updateProfile(formData: FormData) {
   const session = await auth();
@@ -23,7 +24,14 @@ export async function updateProfile(formData: FormData) {
   ).split("%");
 
   const updateData = { nationality, countryFlag, nationalId };
-  console.log("updateData :", updateData);
+  const { error } = await supabase
+    .from("guests")
+    .update(updateData)
+    .eq("id", session.user?.id);
+
+  if (error) {
+    throw new Error("Guest could not be updated");
+  }
 }
 
 export async function signInAction() {
