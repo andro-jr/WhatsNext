@@ -45,9 +45,9 @@ function UpdateProfileForm({ children, guest }: UpdateProfileFormProps) {
             <Image
               src={countryFlag}
               alt="Country flag"
-              width={36}
-              height={1}
-              className="rounded-sm"
+              width={40}
+              height={20}
+              className="rounded-sm h-5 w-auto"
             />
           )}
         </div>
