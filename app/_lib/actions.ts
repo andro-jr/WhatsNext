@@ -56,7 +56,7 @@ export async function deleteReservation(bookingId: string) {
   const bookingIds = guestBookings.map((booking) => booking.id);
 
   if (!bookingIds.includes(bookingId))
-    throw new Error("Booking does not belong to the current guest!@");
+    throw new Error("Failed to delete the reservation!");
 
   const { error } = await supabase
     .from("bookings")
