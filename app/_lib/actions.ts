@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import supabase from "./supabase";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function updateProfile(formData: FormData) {
   const session = await auth();
@@ -103,4 +104,5 @@ export async function updateReservation(formData: FormData) {
   }
 
   revalidatePath(`/account/reservations/edit/${bookingId}`);
+  redirect("/account/reservations");
 }
