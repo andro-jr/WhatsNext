@@ -21,7 +21,7 @@ export async function getCabin(id: string) {
     notFound();
   }
 
-  return data;
+  return data as Cabin;
 }
 
 export async function getCabinPrice(id: string) {
@@ -64,7 +64,7 @@ export async function getGuest(email: string) {
   return data;
 }
 
-export async function getBooking(id: number) {
+export async function getBooking(id: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
@@ -76,7 +76,7 @@ export async function getBooking(id: number) {
     throw new Error("Booking could not get loaded");
   }
 
-  return data;
+  return data as Booking;
 }
 
 export async function getBookings(
@@ -113,7 +113,6 @@ export async function getBookedDatesByCabinId(cabinId: string) {
     .or(`startDate.gte.${today},status.eq.checked-in`);
 
   if (error) {
-    console.log("error :", error);
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }

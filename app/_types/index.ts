@@ -13,6 +13,7 @@ export type Cabin = {
 export type Booking = {
   id: string;
   guestId: string;
+  cabinId: string;
   startDate: string;
   endDate: string;
   numNights: number;
@@ -20,6 +21,7 @@ export type Booking = {
   numGuests: number;
   status?: string;
   created_at: string;
+  observations: string;
   cabins: {
     name: string;
     image: string;

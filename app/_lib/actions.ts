@@ -70,3 +70,37 @@ export async function deleteReservation(bookingId: string) {
 
   revalidatePath("/account/reservations");
 }
+
+export async function updateReservation(formData: FormData) {
+  const session = await auth();
+
+  if (!session) throw new Error("You must be logged in!");
+
+  const guestBookings = await getBookings(session?.user?.id);
+
+  const bookingIds = guestBookings.map((booking) => booking.id.toString());
+
+  const bookingId = formData.get("bookingId") as string;
+  const numGuests = formData.get("numGuests");
+  const observations = formData.get("observations");
+
+  const updatedData = { numGuests, observations };
+  console.log("updatedData :", updatedData);
+
+  if (!bookingId || !bookingIds.includes(bookingId))
+    throw new Error("Failed to update the reservation!");
+
+  const { error } = await supabase
+    .from("bookings")
+    .update(updatedData)
+    .eq("id", bookingId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
+
+  revalidatePath(`/account/reservations/edit/${bookingId}`);
+}
