@@ -1,19 +1,19 @@
 "use client";
 import SpinnerMini from "@/app/_components/SpinnerMini";
-import { deleteReservation } from "@/app/_lib/actions";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import { useTransition } from "react";
 
 interface DeleteReservationProps {
   bookingId: string;
+  onDelete: (bookingId: string) => void;
 }
 
-function DeleteReservation({ bookingId }: DeleteReservationProps) {
+function DeleteReservation({ bookingId, onDelete }: DeleteReservationProps) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
     if (confirm("Are you sure you want to delete this reservation?"))
-      startTransition(() => deleteReservation(bookingId));
+      startTransition(() => onDelete(bookingId));
   };
 
   return (

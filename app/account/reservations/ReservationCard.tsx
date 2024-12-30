@@ -12,9 +12,10 @@ export const formatDistanceFromNow = (dateStr: string) =>
 
 interface ReservationCardProps {
   booking: Booking;
+  handleDelete: (bookingId: string) => void;
 }
 
-function ReservationCard({ booking }: ReservationCardProps) {
+function ReservationCard({ booking, handleDelete }: ReservationCardProps) {
   const {
     id,
     // guestId,
@@ -85,7 +86,7 @@ function ReservationCard({ booking }: ReservationCardProps) {
             <span className="mt-1">Edit</span>
           </Link>
         )}
-        <DeleteReservation bookingId={id} />
+        <DeleteReservation onDelete={handleDelete} bookingId={id} />
       </div>
     </div>
   );
